@@ -30,6 +30,5 @@ server:
 
 client:
   auth:
-    key: "Y0pGM3pNR3BSNWljeXlaM002b0RrMmx4UkZoaDJuOVc="
     properties:
-      "[gateway-service]": "K20w9tTzlTXnshYNlvGc9362080Tssmi"
+      "[api-gateway]": "SzIwdzl0VHpsVFhuc2hZTmx2R2M5MzYyMDgwVHNzbWk="

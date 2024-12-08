@@ -17,6 +17,7 @@
 	<properties>
 		<java.version>21</java.version>
 		<springdoc-openapi.version>2.6.0</springdoc-openapi.version>
+		<spring-boot-maven-plugin.version>3.4.0</spring-boot-maven-plugin.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -57,8 +58,25 @@
 	<build>
 		<plugins>
 			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>${maven-compiler-plugin.version}</version>
+				<configuration>
+					<source>${java.version}</source>
+					<target>${java.version}</target>
+					<annotationProcessorPaths>
+						<path>
+							<groupId>org.projectlombok</groupId>
+							<artifactId>lombok</artifactId>
+							<version>${lombok.version}</version>
+						</path>
+					</annotationProcessorPaths>
+				</configuration>
+			</plugin>
+			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+				<version>${spring-boot-maven-plugin.version}</version>
 				<configuration>
 					<excludes>
 						<exclude>

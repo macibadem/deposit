@@ -1,4 +1,4 @@
-package com.deposit.customerservice.security.properties;
+package com.deposit.apigateway.security.properties;
 
 import jakarta.validation.constraints.NotEmpty;
 import java.util.Map;

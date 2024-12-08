@@ -2,7 +2,6 @@ package com.deposit.customerservice.security.filter;
 
 
 import com.deposit.customerservice.security.properties.ClientAuthProperties;
-import com.deposit.customerservice.security.service.EncryptionService;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -26,10 +25,10 @@ public class ClientAuthFilter extends OncePerRequestFilter {
       "/actuator/**",
       "/h2-console/**");
 
-  private final static String HEADER_API_KEY = "X-API-KEY";
-  private final static String HEADER_API_SECRET = "X-API-SECRET";
+  private final static String HEADER_API_KEY = "x-api-key";
+  private final static String HEADER_API_SECRET = "x-api-secret";
 
-  private final EncryptionService encryptionService;
+
   private final ClientAuthProperties clientAuthProperties;
   private final AntPathMatcher antPathMatcher = new AntPathMatcher();
 
@@ -58,11 +57,8 @@ public class ClientAuthFilter extends OncePerRequestFilter {
     chain.doFilter(request, response);
   }
 
-  private boolean isClientNotAuthenticated(final String client, final String secret)
-      throws Exception {
-    var key = clientAuthProperties.getKey();
-    var secretProp = clientAuthProperties.getProperties().get(client);
-    return !StringUtils.hasText(secretProp) ||
-        !encryptionService.decrypt(secret, key).equals(secretProp);
+    private boolean isClientNotAuthenticated(final String client, final String secret){
+      var secretProp = clientAuthProperties.getProperties().get(client);
+    return !StringUtils.hasText(secretProp) || !secret.equals(secretProp);
   }
 }
