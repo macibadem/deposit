@@ -1,0 +1,283 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="5825f317-32e2-4ece-8e2b-89ce6203364c" name="Changes" comment="customer-service added">
+      <change afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/aws.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/capgemini.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/customer-service/.gitattributes" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/customer-service/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/customer-service/.mvn/wrapper/maven-wrapper.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/customer-service/mvnw" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/customer-service/mvnw.cmd" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/customer-service/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/customer-service/src/main/java/com/deposit/customerservice/CustomerServiceApplication.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/customer-service/src/main/java/com/deposit/customerservice/config/GlobalExceptionHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/customer-service/src/main/java/com/deposit/customerservice/controller/CustomerController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/customer-service/src/main/java/com/deposit/customerservice/dto/CustomerDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/customer-service/src/main/java/com/deposit/customerservice/entity/Customer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/customer-service/src/main/java/com/deposit/customerservice/mapper/CustomerMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/customer-service/src/main/java/com/deposit/customerservice/repository/CustomerRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/customer-service/src/main/java/com/deposit/customerservice/security/filter/ClientAuthFilter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/customer-service/src/main/java/com/deposit/customerservice/security/properties/ClientAuthProperties.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/customer-service/src/main/java/com/deposit/customerservice/security/service/EncryptionService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/customer-service/src/main/java/com/deposit/customerservice/service/CustomerService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/customer-service/src/main/resources/application.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/customer-service/src/main/resources/data.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/customer-service/src/test/java/com/deposit/customerservice/CustomerServiceApplicationTests.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/customer-service/src/test/java/com/deposit/customerservice/controller/CustomerControllerTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/customer-service/src/test/java/com/deposit/customerservice/service/CustomerServiceTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+        <option value="JUnit5 Test Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="feature/user-service" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="MavenRunner">
+    <option name="skipTests" value="true" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 7
+}</component>
+  <component name="ProjectId" id="2ptR02tmMR5tkSJ5BmEIUvujKzE" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
+    "git-widget-placeholder": "feature/customer-service",
+    "jdk.selected.JAVA_MODULE": "temurin-21",
+    "last_opened_file_path": "/Users/mustafaacibadem/Desktop/windows/capgemini/user-service/src/main/resources",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "SDKs",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "reference.projectsettings.compiler.annotationProcessors",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/user-service/src/main/resources" />
+    </key>
+    <key name="CreateTestDialog.Recents.Supers">
+      <recent name="" />
+    </key>
+    <key name="CreateTestDialog.RecentsKey">
+      <recent name="com.deposit.userservice.service" />
+      <recent name="com.deposit.userservice.controller" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.deposit.userservice.entity" />
+      <recent name="com.deposit.userservice.security.service" />
+      <recent name="com.deposit.userservice.config.properties" />
+      <recent name="com.deposit.userservice.filter" />
+      <recent name="com.deposit.userservice.mapper" />
+    </key>
+  </component>
+  <component name="RunManager" selected="JUnit.CustomerControllerTest">
+    <configuration name="CustomerControllerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="customer-service" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.deposit.customerservice.controller.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.deposit.userservice.controller" />
+      <option name="MAIN_CLASS_NAME" value="com.deposit.customerservice.controller.CustomerControllerTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="CustomerControllerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="customer-service" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.deposit.customerservice.controller.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.deposit.customerservice.controller" />
+      <option name="MAIN_CLASS_NAME" value="com.deposit.customerservice.controller.CustomerControllerTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="CustomerServiceTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="customer-service" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.deposit.customerservice.service.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.deposit.userservice.service" />
+      <option name="MAIN_CLASS_NAME" value="com.deposit.customerservice.service.CustomerServiceTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="CustomerServiceTest.getByUsername_whenUserFound_thenReturnUserDto" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="customer-service" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.deposit.customerservice.service.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.deposit.userservice.service" />
+      <option name="MAIN_CLASS_NAME" value="com.deposit.customerservice.service.CustomerServiceTest" />
+      <option name="METHOD_NAME" value="getByUsername_whenUserFound_thenReturnUserDto" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="UserControllerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="customer-service" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.deposit.userservice.controller.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.deposit.userservice.controller" />
+      <option name="MAIN_CLASS_NAME" value="com.deposit.userservice.controller.UserControllerTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="CustomerServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="customer-service" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.deposit.customerservice.CustomerServiceApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.CustomerControllerTest" />
+        <item itemvalue="JUnit.CustomerServiceTest" />
+        <item itemvalue="JUnit.UserControllerTest" />
+        <item itemvalue="JUnit.CustomerControllerTest" />
+        <item itemvalue="JUnit.CustomerServiceTest.getByUsername_whenUserFound_thenReturnUserDto" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="5825f317-32e2-4ece-8e2b-89ce6203364c" name="Changes" comment="" />
+      <created>1733583158734</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1733583158734</updated>
+      <workItem from="1733583159948" duration="452000" />
+      <workItem from="1733583645020" duration="1096000" />
+      <workItem from="1733584754412" duration="386000" />
+      <workItem from="1733603056198" duration="8294000" />
+      <workItem from="1733612766873" duration="4233000" />
+      <workItem from="1733648275530" duration="9987000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="customer-service added" />
+    <option name="LAST_COMMIT_MESSAGE" value="customer-service added" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/customer-service/src/main/java/com/deposit/customerservice/controller/CustomerController.java</url>
+          <line>28</line>
+          <option name="timeStamp" value="5" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/customer-service/src/main/java/com/deposit/customerservice/service/CustomerService.java</url>
+          <line>16</line>
+          <option name="timeStamp" value="6" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/customer-service/src/test/java/com/deposit/customerservice/controller/CustomerControllerTest.java</url>
+          <line>46</line>
+          <option name="timeStamp" value="12" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/customer-service/src/main/java/com/deposit/customerservice/config/GlobalExceptionHandler.java</url>
+          <line>50</line>
+          <option name="timeStamp" value="13" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
+  </component>
+</project>
