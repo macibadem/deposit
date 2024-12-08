@@ -24,7 +24,7 @@ public class CustomerController {
   private final CustomerService customerService;
 
   @GetMapping("/by-username/{username}")
-  @Operation(method = "GET", summary = "Customer By Id Service", description = "Get Customer By Id.")
+  @Operation(method = "GET", summary = "Customer By Username Service", description = "Get Customer By Username.")
   public ResponseEntity<CustomerDto> getByUsername(@NotNull @PathVariable("username") String username) {
     var customerDto = customerService.getByUsername(username);
 

@@ -1,0 +1,52 @@
+spring:
+  application:
+    name: api-gateway
+  cloud:
+    gateway:
+      globalcors:
+        add-to-simple-url-handler-mapping: true
+        corsConfigurations:
+          '[/**]':
+            allowedOrigins: "*"
+            allowedMethods:
+              - GET
+              - POST
+              - PUT
+              - DELETE
+              - PATCH
+            allowedHeaders:
+              - "Origin"
+              - "Content-Type"
+              - "Accept"
+              - "Authorization"
+              - "User-Key"
+              - "Request-Tracker"
+              - "Session-Tracker"
+              - "X-XSRF-TOKEN"
+      default-filters:
+        - DedupeResponseHeader=Access-Control-Allow-Credentials Access-Control-Allow-Origin, RETAIN_FIRST
+
+server:
+  error:
+    whitelabel:
+      enabled: false
+  port: 8081
+  servlet:
+    context-path: /api
+
+customer:
+  service:
+    url: http://localhost:8080/customer-service/
+
+
+jwt:
+  signing:
+    key: UzlTaEdxcm5qTFJad1pERlQ2MmpCU3A3cHRNdHR4dEhrZHdNTTI3VDlKTjZMVUZ4b05HelhBSkhlQndURHl0U200bnBaUXBEdDJ3N0tzREJuTTlScXg4enAyTHRaVWp4YXF0NlVaS3hqVXRlbWJwQmZGZmNLV056UzY5bnNVdTM=
+  expiry:
+    duration: 1h
+
+
+client:
+  auth:
+    properties:
+      "[api-gateway]": "SzIwdzl0VHpsVFhuc2hZTmx2R2M5MzYyMDgwVHNzbWk="
