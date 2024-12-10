@@ -43,6 +43,9 @@ public class SecurityConfig {
             /*AuthenticationController*/
             .requestMatchers("/v0/auth/login").permitAll()
 
+            /*Account*/
+            .requestMatchers("/gateway/account/**").authenticated()
+
             .anyRequest().denyAll())
         .sessionManagement(
             manager -> manager.sessionCreationPolicy(SessionCreationPolicy.STATELESS))

@@ -1,4 +1,4 @@
-package com.deposit.apigateway.constants;
+package com.deposit.accountservice.constants;
 
 import lombok.experimental.UtilityClass;
 
@@ -17,4 +17,8 @@ public final class CommonConstants {
     public final static String API_GATEWAY = "api-gateway";
   }
 
+  @UtilityClass
+  public class Topics {
+    public final static String ACCOUNT_CREATED = "account-created";
+  }
 }

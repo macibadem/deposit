@@ -20,9 +20,10 @@ public class UserDetailsService implements
   private final ClientAuthProperties clientAuthProperties;
 
   @Override
-  public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+  public UserDetails loadUserByUsername(String customerId) throws UsernameNotFoundException {
     var apiSecret = clientAuthProperties.getProperties().get(Modules.API_GATEWAY);
-    var customerDto = customerClient.getCustomerByUsername(username, Modules.API_GATEWAY,
+    var customerDto = customerClient.getCustomerById(Long.valueOf(customerId),
+        Modules.API_GATEWAY,
         apiSecret);
     return Optional.ofNullable(customerDto)
         .map(this::convert)
@@ -31,9 +32,9 @@ public class UserDetailsService implements
 
   private UserDetails convert(CustomerDto customerDto) {
     return User.builder()
-        .username(customerDto.username())
-        .password(customerDto.password())
         .authorities("USER")
+        .password(customerDto.password())
+        .username(customerDto.id().toString())
         .build();
   }
 }

@@ -33,8 +33,8 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
     final var jwt = HttpUtil.resolveBearerToken(request);
 
     if (StringUtils.hasText(jwt)) {
-      final String username = jwtService.extractUsername(jwt);
-      UserDetails userDetails = this.userDetailsService.loadUserByUsername(username);
+      final String customerId = jwtService.extractCustomerId(jwt);
+      UserDetails userDetails = this.userDetailsService.loadUserByUsername(customerId);
 
       if (Objects.nonNull(userDetails) &&
           Objects.isNull(SecurityContextHolder.getContext().getAuthentication()) &&

@@ -18,6 +18,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.MockedStatic;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 @ExtendWith(MockitoExtension.class)
@@ -25,6 +26,8 @@ class CustomerServiceTest {
 
   public static final String ADMIN = "admin";
   public static final String NOT_EXISTS_USER = "notExistsUser";
+  public static final Long ADMIN_ID = 1L;
+  public static final Long NOT_EXISTS_CUSTOMER_ID = -1L;
 
   @InjectMocks
   private CustomerService customerService;
@@ -46,16 +49,47 @@ class CustomerServiceTest {
   @Test
   void getByUsername_whenCustomerFound_thenReturnCustomerDto() {
     //given
-    var customer = Customer.builder().username(ADMIN).build();
-    var customerDto = CustomerDto.builder().username(ADMIN).build();
-    when(customerRepository.findByUsername(ADMIN)).thenReturn(Optional.of(customer));
-    mockStatic(CustomerMapper.class).when(() -> CustomerMapper.mapToDto(Optional.of(customer)))
-        .thenReturn(customerDto);
+    try (MockedStatic<CustomerMapper> customerMapperMock = mockStatic(CustomerMapper.class)) {
+      var customer = Customer.builder().username(ADMIN).build();
+      var customerDto = CustomerDto.builder().username(ADMIN).build();
+      when(customerRepository.findByUsername(ADMIN)).thenReturn(Optional.of(customer));
+      customerMapperMock.when(() -> CustomerMapper.mapToDto(Optional.of(customer)))
+          .thenReturn(customerDto);
+      //when
+      var returnedCustomerDto = customerService.getByUsername(ADMIN);
+      //then
+      assertNotNull(returnedCustomerDto);
+      assertEquals(returnedCustomerDto.id(), customer.getId());
+      verify(customerRepository, times(1)).findByUsername(ADMIN);
+    }
+  }
+
+  @Test
+  void getByCustomerId_whenCustomerNotFound_thenReturnNoContent() {
+    //given
+    when(customerRepository.findById(NOT_EXISTS_CUSTOMER_ID)).thenReturn(Optional.empty());
     //when
-    var returnedCustomerDto = customerService.getByUsername(ADMIN);
+    var customerDto = customerService.getByCustomerId(NOT_EXISTS_CUSTOMER_ID);
     //then
-    assertNotNull(returnedCustomerDto);
-    assertEquals(returnedCustomerDto.id(), customer.getId());
-    verify(customerRepository, times(1)).findByUsername(ADMIN);
+    assertNull(customerDto);
+    verify(customerRepository, times(1)).findById(NOT_EXISTS_CUSTOMER_ID);
+  }
+
+  @Test
+  void getByCustomerId_whenCustomerFound_thenReturnCustomerDto() {
+    //given
+    try (MockedStatic<CustomerMapper> customerMapperMock = mockStatic(CustomerMapper.class)) {
+      var customer = Customer.builder().username(ADMIN).build();
+      var customerDto = CustomerDto.builder().username(ADMIN).build();
+      when(customerRepository.findById(ADMIN_ID)).thenReturn(Optional.of(customer));
+      customerMapperMock.when(() -> CustomerMapper.mapToDto(Optional.of(customer)))
+          .thenReturn(customerDto);
+      //when
+      var returnedCustomerDto = customerService.getByCustomerId(ADMIN_ID);
+      //then
+      assertNotNull(returnedCustomerDto);
+      assertEquals(returnedCustomerDto.id(), customer.getId());
+      verify(customerRepository, times(1)).findById(ADMIN_ID);
+    }
   }
 }

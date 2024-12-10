@@ -30,8 +30,8 @@ public class AuthenticationService {
         apiSecret);
     Validate.state(Objects.nonNull(customer), "USER_NOT_FOUND");
     authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(
-        customer.username(),
+        customer.id(),
         request.password()));
-    return new LoginResponse(jwtService.generateToken(customer.username()));
+    return new LoginResponse(jwtService.generateToken(customer.id().toString()));
   }
 }
