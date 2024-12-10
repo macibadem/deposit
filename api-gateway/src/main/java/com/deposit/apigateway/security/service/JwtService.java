@@ -23,24 +23,24 @@ public class JwtService{
   @Value("${jwt.expiry.duration:1h}")
   private Duration tokenDuration;
 
-  public String extractUsername(String token) {
+  public String extractCustomerId(String token) {
     return extractClaim(token, Claims::getSubject);
   }
 
 
-  public String generateToken(String username) {
+  public String generateToken(String customerId) {
     Date issuedAt = new Date(System.currentTimeMillis());
     Date expiration = new Date(issuedAt.getTime() + tokenDuration.toMillis());
 
     return Jwts.builder()
         .setIssuedAt(issuedAt)
         .setExpiration(expiration)
-        .setSubject(username)
+        .setSubject(customerId)
         .signWith(getSigningKey(), SignatureAlgorithm.HS256).compact();
   }
 
   public boolean isTokenValid(String token, UserDetails userDetails) {
-    return (extractUsername(token).equals(userDetails.getUsername())) && !isTokenExpired(token);
+    return (extractCustomerId(token).equals(userDetails.getUsername())) && !isTokenExpired(token);
   }
 
   public Date extractExpiration(String token) {

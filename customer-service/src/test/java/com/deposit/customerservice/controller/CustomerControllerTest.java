@@ -20,6 +20,9 @@ class CustomerControllerTest {
 
   public static final String ADMIN = "admin";
   public static final String NOT_EXISTS_USER = "notExistsUser";
+
+  public static final Long ADMIN_ID = 1L;
+  public static final Long NOT_EXISTS_CUSTOMER_ID = -1L;
   
   @Mock
   private CustomerService customerService;
@@ -50,5 +53,31 @@ class CustomerControllerTest {
     assertEquals(HttpStatus.OK, response.getStatusCode());
     assertEquals(ADMIN, response.getBody().username());
     verify(customerService, times(1)).getByUsername(ADMIN);
+  }
+
+  @Test
+  void getByCustomerId_whenUserNotFound_thenReturnNoContent() {
+    //given
+    when(customerService.getByCustomerId(NOT_EXISTS_CUSTOMER_ID)).thenReturn(null);
+    //when
+    var response = customerController.getByCustomerId(NOT_EXISTS_CUSTOMER_ID);
+    //then
+    assertNotNull(response);
+    assertEquals(HttpStatus.NO_CONTENT, response.getStatusCode());
+    verify(customerService, times(1)).getByCustomerId(NOT_EXISTS_CUSTOMER_ID);
+  }
+
+  @Test
+  void getByCustomerId_whenUserFound_thenReturnSuccess() {
+    //given
+    var customerDto = CustomerDto.builder().username(ADMIN).build();
+    when(customerService.getByCustomerId(ADMIN_ID)).thenReturn(customerDto);
+    //when
+    var response = customerController.getByCustomerId(ADMIN_ID);
+    //then
+    assertNotNull(response);
+    assertEquals(HttpStatus.OK, response.getStatusCode());
+    assertEquals(ADMIN, response.getBody().username());
+    verify(customerService, times(1)).getByCustomerId(ADMIN_ID);
   }
 }

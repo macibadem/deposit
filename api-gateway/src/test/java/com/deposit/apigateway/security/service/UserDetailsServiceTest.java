@@ -4,6 +4,7 @@ package com.deposit.apigateway.security.service;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.when;
 
@@ -23,6 +24,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 @ExtendWith(MockitoExtension.class)
 class UserDetailsServiceTest {
 
+  private static final Long ADMIN_CUSTOMER_ID = 1L;
   private static final String ADMIN_USERNAME = "admin";
   private static final String ADMIN_PASSWORD = "123456";
   private static final String API_GATEWAY_SECRET = "secret";
@@ -44,26 +46,27 @@ class UserDetailsServiceTest {
   void loadUserByUsername_whenUserFound_thenReturnUserDetails() {
     //given
     var customerDto = CustomerDto.builder()
+        .id(ADMIN_CUSTOMER_ID)
         .username(ADMIN_USERNAME)
         .password(ADMIN_PASSWORD)
         .build();
-    when(customerClient.getCustomerByUsername(customerDto.username(), Modules.API_GATEWAY,
+    when(customerClient.getCustomerById(customerDto.id(), Modules.API_GATEWAY,
         API_GATEWAY_SECRET)).thenReturn(customerDto);
     //when
-    var userDetails = userDetailsService.loadUserByUsername(ADMIN_USERNAME);
+    var userDetails = userDetailsService.loadUserByUsername(ADMIN_CUSTOMER_ID.toString());
     //then
     assertNotNull(userDetails);
-    assertEquals(ADMIN_USERNAME, userDetails.getUsername());
+    assertEquals(ADMIN_CUSTOMER_ID.toString(), userDetails.getUsername());
   }
 
   @Test
   void loadUserByUsername_UserNotFound() {
     //given
-    when(customerClient.getCustomerByUsername(anyString(), anyString(), anyString())).thenReturn(
+    when(customerClient.getCustomerById(anyLong(), anyString(), anyString())).thenReturn(
         null);
     //when
     var exception = assertThrows(UsernameNotFoundException.class,
-        () -> userDetailsService.loadUserByUsername(ADMIN_USERNAME));
+        () -> userDetailsService.loadUserByUsername(ADMIN_CUSTOMER_ID.toString()));
     //then
     assertEquals("User not found", exception.getMessage());
   }

@@ -12,6 +12,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @Validated
@@ -27,6 +28,16 @@ public class CustomerController {
   @Operation(method = "GET", summary = "Customer By Username Service", description = "Get Customer By Username.")
   public ResponseEntity<CustomerDto> getByUsername(@NotNull @PathVariable("username") String username) {
     var customerDto = customerService.getByUsername(username);
+
+    return Objects.isNull(customerDto) ?
+        ResponseEntity.noContent().build() :
+        ResponseEntity.ok().body(customerDto);
+  }
+
+  @GetMapping()
+  @Operation(method = "GET", summary = "Customer By Id Service", description = "Get Customer By Id.")
+  public ResponseEntity<CustomerDto> getByCustomerId(@NotNull @RequestParam(name = "id") Long id) {
+    var customerDto = customerService.getByCustomerId(id);
 
     return Objects.isNull(customerDto) ?
         ResponseEntity.noContent().build() :

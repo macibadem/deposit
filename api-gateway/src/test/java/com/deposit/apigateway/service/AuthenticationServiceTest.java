@@ -30,6 +30,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 class AuthenticationServiceTest {
 
   private static final String TOKEN = "token";
+  private static final Long ADMIN_CUSTOMER_ID = 1L;
   private static final String ADMIN_USERNAME = "admin";
   private static final String ADMIN_PASSWORD = "123456";
   private static final String ADMIN_WRONG_PASSWORD = "xxxx";
@@ -57,11 +58,12 @@ class AuthenticationServiceTest {
   void login_success() throws GatewayException {
     //given
     var customerDto = CustomerDto.builder()
+        .id(ADMIN_CUSTOMER_ID)
         .username(ADMIN_USERNAME)
         .password(ADMIN_PASSWORD)
         .build();
-    var authentication = new UsernamePasswordAuthenticationToken(ADMIN_USERNAME, ADMIN_PASSWORD);
-    when(jwtService.generateToken(ADMIN_USERNAME)).thenReturn(TOKEN);
+    var authentication = new UsernamePasswordAuthenticationToken(ADMIN_CUSTOMER_ID, ADMIN_PASSWORD);
+    when(jwtService.generateToken(ADMIN_CUSTOMER_ID.toString())).thenReturn(TOKEN);
     when(customerClient.getCustomerByUsername(customerDto.username(), Modules.API_GATEWAY,
         API_GATEWAY_SECRET)).thenReturn(customerDto);
     when(authenticationManager.authenticate(authentication)).thenReturn(authentication);
@@ -91,10 +93,11 @@ class AuthenticationServiceTest {
   void login_whenAuthenticationFails_thenThrowException() {
     //given
     var customerDto = CustomerDto.builder()
+        .id(ADMIN_CUSTOMER_ID)
         .username(ADMIN_USERNAME)
         .password(ADMIN_WRONG_PASSWORD)
         .build();
-    var authentication = new UsernamePasswordAuthenticationToken(ADMIN_USERNAME,
+    var authentication = new UsernamePasswordAuthenticationToken(ADMIN_CUSTOMER_ID,
         ADMIN_WRONG_PASSWORD);
     when(customerClient.getCustomerByUsername(customerDto.username(), Modules.API_GATEWAY,
         API_GATEWAY_SECRET)).thenReturn(customerDto);

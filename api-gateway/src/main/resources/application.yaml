@@ -1,42 +1,23 @@
 spring:
   application:
     name: api-gateway
-  cloud:
-    gateway:
-      globalcors:
-        add-to-simple-url-handler-mapping: true
-        corsConfigurations:
-          '[/**]':
-            allowedOrigins: "*"
-            allowedMethods:
-              - GET
-              - POST
-              - PUT
-              - DELETE
-              - PATCH
-            allowedHeaders:
-              - "Origin"
-              - "Content-Type"
-              - "Accept"
-              - "Authorization"
-              - "User-Key"
-              - "Request-Tracker"
-              - "Session-Tracker"
-              - "X-XSRF-TOKEN"
-      default-filters:
-        - DedupeResponseHeader=Access-Control-Allow-Credentials Access-Control-Allow-Origin, RETAIN_FIRST
+
 
 server:
   error:
     whitelabel:
       enabled: false
-  port: 8081
+  port: 8080
   servlet:
     context-path: /api
 
 customer:
   service:
-    url: http://localhost:8080/customer-service/
+    url: http://localhost:8081/customer-service/
+
+account:
+  service:
+    url: http://localhost:8082/account-service/
 
 
 jwt:

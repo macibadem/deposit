@@ -1,8 +1,8 @@
 spring:
   application:
-    name: customer-service
+    name: account-service
   datasource:
-    url: jdbc:h2:mem:customerdb
+    url: jdbc:h2:mem:accountdb
     driverClassName: org.h2.Driver
     password: password
     username: admin
@@ -22,11 +22,13 @@ spring:
     init:
       platform: h2
       mode: always
+  kafka:
+    bootstrap-servers: localhost:9092
 
 server:
-  port: 8081
+  port: 8082
   servlet:
-    context-path: /customer-service
+    context-path: /account-service
 
 client:
   auth:

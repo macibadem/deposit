@@ -16,4 +16,8 @@ public class CustomerService {
   public CustomerDto getByUsername(String username) {
     return CustomerMapper.mapToDto(customerRepository.findByUsername(username));
   }
+
+  public CustomerDto getByCustomerId(Long id) {
+    return CustomerMapper.mapToDto(customerRepository.findById(id));
+  }
 }
