@@ -33,5 +33,4 @@ server:
 client:
   auth:
     properties:
-      "[customer-service]": "V0ppUFVsT3FGUjRQWHZhTWYxWmlVRnhhSGNHNVNvVWM="
       "[query-service]": "NVlWa1lJVHhTM2E4RjNpOTBYSkJPSzZMVzdMU1gzZWM="
