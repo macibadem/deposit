@@ -1,11 +1,14 @@
 package com.deposit.accountservice.service;
 
 import com.deposit.accountservice.constants.CommonConstants.Topics;
+import com.deposit.accountservice.dto.AccountDto;
 import com.deposit.accountservice.entity.Account;
 import com.deposit.accountservice.kafka.event.AccountCreatedEvent;
+import com.deposit.accountservice.mapper.AccountMapper;
 import com.deposit.accountservice.repository.AccountRepository;
 import java.math.BigDecimal;
 import java.time.Instant;
+import java.util.List;
 import java.util.UUID;
 import lombok.RequiredArgsConstructor;
 import org.springframework.kafka.core.KafkaTemplate;
@@ -31,5 +34,9 @@ public class AccountService {
         Instant.now(),
         UUID.randomUUID().toString());
     kafkaTemplate.send(Topics.ACCOUNT_CREATED, accountCreatedEvent);
+  }
+
+  public List<AccountDto> getAccountByCustomerId(Long customerId) {
+    return AccountMapper.map(accountRepository.findAllByCustomerId(customerId));
   }
 }

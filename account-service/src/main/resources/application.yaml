@@ -34,3 +34,4 @@ client:
   auth:
     properties:
       "[api-gateway]": "SzIwdzl0VHpsVFhuc2hZTmx2R2M5MzYyMDgwVHNzbWk="
+      "[query-service]": "N2RGclZRR0psTERLcE9SVGhEaGYyd3cwNjhTUlh0RVI="

@@ -16,6 +16,7 @@ import org.springframework.util.StringUtils;
 @UtilityClass
 public class HttpUtil {
 
+  private static final String GATEWAY_QUERY_PATH = "/api/gateway/query/";
   private static final String GATEWAY_ACCOUNT_PATH = "/api/gateway/account/";
 
   public static String resolveBearerToken(final HttpServletRequest request) {
@@ -43,5 +44,9 @@ public class HttpUtil {
 
   public static String replaceGatewayAccountPath(HttpServletRequest request) {
     return request.getRequestURI().replace(GATEWAY_ACCOUNT_PATH, "");
+  }
+
+  public static String replaceGatewayQueryPath(HttpServletRequest request) {
+    return request.getRequestURI().replace(GATEWAY_QUERY_PATH, "");
   }
 }

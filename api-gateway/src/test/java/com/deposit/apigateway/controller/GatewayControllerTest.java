@@ -9,6 +9,7 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import com.deposit.apigateway.client.AccountClient;
+import com.deposit.apigateway.client.QueryClient;
 import com.deposit.apigateway.security.properties.ClientAuthProperties;
 import com.deposit.apigateway.util.HttpUtil;
 import jakarta.servlet.http.HttpServletRequest;
@@ -25,6 +26,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @ExtendWith(MockitoExtension.class)
 class GatewayControllerTest {
 
+  @Mock
+  private QueryClient queryClient;
   @Mock
   private HttpServletRequest request;
   @Mock
@@ -80,10 +83,81 @@ class GatewayControllerTest {
   @Test
   void handleAccountRequests_whenExceptionThrown_thenReturnInternalServerError() {
     //given
-    lenient().when(accountClient.post(anyString(), any(), any())).thenThrow(new RuntimeException(""));
+    lenient().when(accountClient.post(anyString(), any(), any()))
+        .thenThrow(new RuntimeException(""));
     //when
     var response = gatewayController.handleAccountRequests(request, null);
     //then
     assertEquals(HttpStatus.INTERNAL_SERVER_ERROR, response.getStatusCode());
+  }
+
+  @Test
+  void handleQueryRequests_whenGetRequestSend_thenForwardSuccess() {
+    //given
+    var queryPath = "vo/queries/user-info";
+    var headerMap = Map.of("x-api-key", "api-gateway");
+    when(request.getMethod()).thenReturn("GET");
+    when(queryClient.get(queryPath, null, headerMap))
+        .thenReturn(ResponseEntity.ok(getUserInfoString()));
+    try (var httpUtilMock = mockStatic(HttpUtil.class);
+        var requestMethodMock = mockStatic(RequestMethod.class)) {
+      httpUtilMock.when(() -> HttpUtil.replaceGatewayQueryPath(request)).thenReturn(queryPath);
+      httpUtilMock.when(() -> HttpUtil.appendCustomHeaders(request, clientAuthProperties))
+          .thenReturn(headerMap);
+      requestMethodMock.when(() -> RequestMethod.resolve("GET")).thenReturn(RequestMethod.GET);
+      //when
+      var response = gatewayController.handleQueryRequests(request, null);
+      //then
+      assertEquals(HttpStatus.OK, response.getStatusCode());
+      verify(queryClient).get(queryPath, null, headerMap);
+    }
+  }
+
+  @Test
+  void handleQueryRequests_whenExceptionThrown_thenReturnInternalServerError() {
+    //given
+    lenient().when(queryClient.get(anyString(), any(), any()))
+        .thenThrow(new RuntimeException(""));
+    //when
+    var response = gatewayController.handleQueryRequests(request, null);
+    //then
+    assertEquals(HttpStatus.INTERNAL_SERVER_ERROR, response.getStatusCode());
+  }
+
+  private String getUserInfoString() {
+    return """
+        {
+          "name": "Mustafa",
+          "surname": "Acibadem",
+          "balance": 225.00,
+          "accountInfoList": [
+            {
+              "accountId": 1,
+              "transactions": [
+                {
+                  "accountId": 1,
+                  "amount": 75.50,
+                  "timestamp": "2024-12-11T10:15:30Z"
+                },
+                {
+                  "accountId": 1,
+                  "amount": 24.50,
+                  "timestamp": "2024-12-12T12:00:00Z"
+                }
+              ]
+            },
+            {
+              "accountId": 2,
+              "transactions": [
+                {
+                  "accountId": 2,
+                  "amount": 125.00,
+                  "timestamp": "2024-12-10T08:00:00Z"
+                }
+              ]
+            }
+          ]
+        }
+        """;
   }
 }

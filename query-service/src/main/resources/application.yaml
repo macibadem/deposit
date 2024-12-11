@@ -1,0 +1,27 @@
+spring:
+  application:
+    name: query-service
+
+server:
+  port: 8084
+  servlet:
+    context-path: /query-service
+
+
+customer:
+  service:
+    url: http://localhost:8081/customer-service/
+
+account:
+  service:
+    url: http://localhost:8082/account-service/
+
+transaction:
+  service:
+    url: http://localhost:8083/transaction-service/
+
+client:
+  auth:
+    properties:
+      "[api-gateway]": "SzIwdzl0VHpsVFhuc2hZTmx2R2M5MzYyMDgwVHNzbWk="
+      "[query-service]": "N2RGclZRR0psTERLcE9SVGhEaGYyd3cwNjhTUlh0RVI="
