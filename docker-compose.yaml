@@ -97,19 +97,25 @@ services:
     networks:
       - deposit_network
 
-  kafka-ui:
-    image: provectuslabs/kafka-ui:latest
-    container_name: kafka-ui
+  jenkins:
+    build: ./jenkins
+    container_name: jenkins
     ports:
-      - "8080:8091"
+      - "8088:8080"
+      - "50000:50000"
     environment:
-      KAFKA_CLUSTERS_0_NAME: local
-      KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS: kafka:9092
+      LOCAL_REPO_PATH: "${COMPOSE_PROJECT_PATH}"
+      CASC_JENKINS_CONFIG: /var/jenkins_home/casc_configs
+    volumes:
+      - ./jenkins:/var/jenkins_home
+      - ./jenkins/init.groovy.d:/var/jenkins_home/init.groovy.d
+      - ./jenkins/jenkins.yaml:/var/jenkins_home/casc_configs/jenkins.yaml
     networks:
       - deposit_network
-    depends_on:
-      - kafka
 
 networks:
   deposit_network:
     driver: bridge
+
+volumes:
+  jenkins_home:

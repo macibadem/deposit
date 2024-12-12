@@ -25,3 +25,20 @@ replay_pid*
 
 #.idea files
 /.idea/
+/jenkins/plugins/
+/jenkins/war/
+/jenkins/failed-boot-attempts.txt
+/jenkins/hudson.model.UpdateCenter.xml
+/jenkins/hudson.plugins.git.GitTool.xml
+/jenkins/identity.key.enc
+/jenkins/jenkins.telemetry.Correlator.xml
+/jenkins/queue.xml
+/jenkins/secret.key
+/jenkins/secret.key.not-so-secret
+/jenkins/.cache/
+/jenkins/.groovy/
+/jenkins/.java/
+/jenkins/jobs/
+/jenkins/secrets/
+/jenkins/users/
+

@@ -41,7 +41,7 @@ class TransactionControllerTest {
     //then
     assertNotNull(response.getBody());
     assertEquals(HttpStatus.OK, response.getStatusCode());
-    assertEquals(1, response.getBody().getContent().size());
+    assertEquals(1, response.getBody().size());
     verify(transactionService).getTransactionsByAccountId(accountId, pageable);
   }
 }
