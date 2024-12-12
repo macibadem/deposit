@@ -13,15 +13,15 @@ server:
 
 customer:
   service:
-    url: http://localhost:8085/customer-service/
+    url: http://customer-service:8085/customer-service/
 
 account:
   service:
-    url: http://localhost:8082/account-service/
+    url: http://account-service:8082/account-service/
 
 query:
   service:
-    url: http://localhost:8084/query-service/
+    url: http://query-service:8084/query-service/
 
 
 jwt:
@@ -31,8 +31,16 @@ jwt:
     duration: 1h
 
 management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
   tracing:
-    enabled: false
+    sampling:
+      probability: 1.0
+  zipkin:
+    tracing:
+      endpoint: http://zipkin:9411/api/v2/spans
 
 debug: true
 

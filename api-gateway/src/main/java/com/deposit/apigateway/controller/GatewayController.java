@@ -45,14 +45,13 @@ public class GatewayController {
   }
 
   @RequestMapping(value = "/query/**", method = {RequestMethod.GET})
-  public ResponseEntity<?> handleQueryRequests(HttpServletRequest request,
-      @Valid @RequestBody(required = false) String body) {
+  public ResponseEntity<?> handleQueryRequests(HttpServletRequest request) {
     try {
       var queryPath = HttpUtil.replaceGatewayQueryPath(request);
       var headerMap = HttpUtil.appendCustomHeaders(request, clientAuthProperties);
 
       if (RequestMethod.GET.equals(RequestMethod.resolve(request.getMethod()))) {
-        return queryClient.get(queryPath, body, headerMap);
+        return queryClient.get(queryPath, headerMap);
       }
       return ResponseEntity.status(HttpStatus.METHOD_NOT_ALLOWED).body("Method not allowed");
     } catch (Exception e) {

@@ -25,7 +25,7 @@ spring:
       platform: h2
       mode: always
   kafka:
-    bootstrap-servers: localhost:9092
+    bootstrap-servers: kafka:9092
 
 server:
   port: 8083
@@ -33,9 +33,16 @@ server:
     context-path: /transaction-service
 
 management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
   tracing:
-    enabled: false
-
+    sampling:
+      probability: 1.0
+  zipkin:
+    tracing:
+      endpoint: http://zipkin:9411/api/v2/spans
 client:
   auth:
     properties:

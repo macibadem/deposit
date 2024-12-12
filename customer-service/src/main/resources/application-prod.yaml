@@ -1,8 +1,8 @@
 spring:
   application:
-    name: transaction-service
+    name: customer-service
   datasource:
-    url: jdbc:h2:mem:transactiondb
+    url: jdbc:h2:mem:customerdb
     driverClassName: org.h2.Driver
     password: password
     username: admin
@@ -24,19 +24,27 @@ spring:
     init:
       platform: h2
       mode: always
-  kafka:
-    bootstrap-servers: localhost:9092
 
 server:
-  port: 8083
+  port: 8085
   servlet:
-    context-path: /transaction-service
+    context-path: /customer-service
 
 management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
   tracing:
-    enabled: false
+    sampling:
+      probability: 1.0
+  zipkin:
+    tracing:
+      endpoint: http://zipkin:9411/api/v2/spans
+
 
 client:
   auth:
     properties:
+      "[api-gateway]": "SzIwdzl0VHpsVFhuc2hZTmx2R2M5MzYyMDgwVHNzbWk="
       "[query-service]": "N2RGclZRR0psTERLcE9SVGhEaGYyd3cwNjhTUlh0RVI="

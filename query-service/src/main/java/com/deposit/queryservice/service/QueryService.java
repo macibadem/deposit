@@ -17,6 +17,7 @@ import java.util.List;
 import java.util.Optional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
 
 
 @Service
@@ -67,8 +68,8 @@ public class QueryService {
   }
 
   private List<TransactionDto> getTransactionList(Long accountId, String secret) {
-    return Optional.ofNullable(
-        transactionClient.getTransactionsByAccountId(accountId, Modules.QUERY_SERVICE, secret)
-    ).orElse(Collections.emptyList());
+    var transactionList = transactionClient.getTransactionsByAccountId(accountId,
+        Modules.QUERY_SERVICE, secret);
+    return !CollectionUtils.isEmpty(transactionList) ? transactionList : Collections.emptyList();
   }
 }
