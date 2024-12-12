@@ -10,6 +10,8 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Component;
 import org.springframework.util.AntPathMatcher;
 import org.springframework.util.StringUtils;
@@ -19,6 +21,9 @@ import org.springframework.web.filter.OncePerRequestFilter;
 @RequiredArgsConstructor
 public class ClientAuthFilter extends OncePerRequestFilter {
 
+  @Value("${server.servlet.context-path}")
+  private String contextPath;
+
   private static final List<String> PATH_WHITE_LIST = List.of(
       "/swagger-ui.html",
       "/v3/api-docs",
@@ -27,16 +32,17 @@ public class ClientAuthFilter extends OncePerRequestFilter {
       "/h2-console/**");
 
 
-
   private final ClientAuthProperties clientAuthProperties;
   private final AntPathMatcher antPathMatcher = new AntPathMatcher();
 
   @Override
-  protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response,
-      FilterChain chain) throws ServletException, IOException {
+  protected void doFilterInternal(@NonNull HttpServletRequest request,
+      @NonNull HttpServletResponse response,
+      @NonNull FilterChain chain) throws ServletException, IOException {
     String uri = request.getRequestURI();
 
-    if (PATH_WHITE_LIST.parallelStream().anyMatch(path -> antPathMatcher.match(path, uri))) {
+    if (PATH_WHITE_LIST.parallelStream()
+        .anyMatch(path -> antPathMatcher.match(contextPath.concat(path), uri))) {
       chain.doFilter(request, response);
       return;
     }
@@ -56,8 +62,8 @@ public class ClientAuthFilter extends OncePerRequestFilter {
     chain.doFilter(request, response);
   }
 
-    private boolean isClientNotAuthenticated(final String client, final String secret){
-      var secretProp = clientAuthProperties.getProperties().get(client);
+  private boolean isClientNotAuthenticated(final String client, final String secret) {
+    var secretProp = clientAuthProperties.getProperties().get(client);
     return !StringUtils.hasText(secretProp) || !secret.equals(secretProp);
   }
 }

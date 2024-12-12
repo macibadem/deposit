@@ -97,7 +97,7 @@ class GatewayControllerTest {
     var queryPath = "vo/queries/user-info";
     var headerMap = Map.of("x-api-key", "api-gateway");
     when(request.getMethod()).thenReturn("GET");
-    when(queryClient.get(queryPath, null, headerMap))
+    when(queryClient.get(queryPath, headerMap))
         .thenReturn(ResponseEntity.ok(getUserInfoString()));
     try (var httpUtilMock = mockStatic(HttpUtil.class);
         var requestMethodMock = mockStatic(RequestMethod.class)) {
@@ -106,20 +106,20 @@ class GatewayControllerTest {
           .thenReturn(headerMap);
       requestMethodMock.when(() -> RequestMethod.resolve("GET")).thenReturn(RequestMethod.GET);
       //when
-      var response = gatewayController.handleQueryRequests(request, null);
+      var response = gatewayController.handleQueryRequests(request);
       //then
       assertEquals(HttpStatus.OK, response.getStatusCode());
-      verify(queryClient).get(queryPath, null, headerMap);
+      verify(queryClient).get(queryPath, headerMap);
     }
   }
 
   @Test
   void handleQueryRequests_whenExceptionThrown_thenReturnInternalServerError() {
     //given
-    lenient().when(queryClient.get(anyString(), any(), any()))
+    lenient().when(queryClient.get(anyString(), any()))
         .thenThrow(new RuntimeException(""));
     //when
-    var response = gatewayController.handleQueryRequests(request, null);
+    var response = gatewayController.handleQueryRequests(request);
     //then
     assertEquals(HttpStatus.INTERNAL_SERVER_ERROR, response.getStatusCode());
   }
