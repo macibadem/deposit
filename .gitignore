@@ -42,5 +42,3 @@ replay_pid*
 /jenkins/secrets/
 /jenkins/users/
 
-#.idea files
-/.idea/
