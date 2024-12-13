@@ -97,6 +97,13 @@ services:
     networks:
       - deposit_network
 
+  react-frontend:
+    build: ./frontend/deposit-app
+    ports:
+      - "3000:80"
+    depends_on:
+      - api-gateway
+
 
 networks:
   deposit_network:
