@@ -1,5 +1,0 @@
-configuration-as-code:latest
-git:latest
-workflow-aggregator:latest
-job-dsl:latest
-docker-workflow:latest
