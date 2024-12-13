@@ -37,7 +37,7 @@ docker --version
 docker-compose --version
 ```
 
-Run the Services
+## Run the Services
 
 1. Start the Docker Environment: Ensure Docker is running on your machine, then execute the following command in the project directory to start all services:
 ```bash
@@ -57,7 +57,7 @@ Start the containers.
 docker-compose down
 ```
 
-How to Run the System as a Whole
+## How to Run the System as a Whole
 
 1. Run Services in Local IDE Environment:
 - To run services in your local IDE environment (e.g., IntelliJ or Eclipse), you can simply execute the start-system-dev.bat (Windows) or start-system-dev.sh (Linux/Mac) file.
@@ -69,11 +69,11 @@ How to Run the System as a Whole
 - Once the system is running, you can call the endpoints mentioned in the How to Test the Services section.
 
 
-How to Test the Services
+## How to Test the Services
 
 To test the services, follow these steps:
- 
-Testing Through the Front End
+
+### **Testing Through the Front End**
 
 Login:
 - reach UI at localhost:3000
@@ -87,7 +87,7 @@ Create Account:
 Fetch User Info
 - After account creation click the Fetch User Info button in the User Info section.
 
-Testing Through end-points
+### **Testing Through end-points**
 
 1. Login to the System
    Before accessing other services, you need to log in using an already registered customer account.
