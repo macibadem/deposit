@@ -1,0 +1,40 @@
+spring:
+  application:
+    name: api-gateway
+
+
+server:
+  error:
+    whitelabel:
+      enabled: false
+  port: 8080
+  servlet:
+    context-path: /api
+
+customer:
+  service:
+    url: http://localhost:8085/customer-service/
+
+account:
+  service:
+    url: http://localhost:8082/account-service/
+
+query:
+  service:
+    url: http://localhost:8084/query-service/
+
+
+jwt:
+  signing:
+    key: UzlTaEdxcm5qTFJad1pERlQ2MmpCU3A3cHRNdHR4dEhrZHdNTTI3VDlKTjZMVUZ4b05HelhBSkhlQndURHl0U200bnBaUXBEdDJ3N0tzREJuTTlScXg4enAyTHRaVWp4YXF0NlVaS3hqVXRlbWJwQmZGZmNLV056UzY5bnNVdTM=
+  expiry:
+    duration: 1h
+
+management:
+  tracing:
+    enabled: false
+
+client:
+  auth:
+    properties:
+      "[api-gateway]": "SzIwdzl0VHpsVFhuc2hZTmx2R2M5MzYyMDgwVHNzbWk="
